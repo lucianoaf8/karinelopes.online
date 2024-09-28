@@ -40,4 +40,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
             lucide.createIcons();
         }
     });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            header.classList.add('bg-white', 'shadow-md');
+            header.classList.remove('bg-opacity-90');
+        } else {
+            header.classList.remove('bg-white', 'shadow-md');
+            header.classList.add('bg-opacity-90');
+        }
+    });
 });

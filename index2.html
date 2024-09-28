@@ -27,6 +27,9 @@
             --font-primary: 'Raleway', sans-serif;
             --font-secondary: 'Lora', serif;
             --transition-speed: 0.3s;
+            --scroll-indicator-width: 4px;
+            --scroll-indicator-bg: #e0e0e0;
+            --scroll-indicator-fill: #eac0d4;
         }
 
         body {
@@ -57,6 +60,7 @@
         /* Navbar */
         nav {
             position: fixed;
+            top: 0;
             width: 100%;
             background-color: var(--color-secondary);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -67,6 +71,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
 
         nav .logo {
@@ -120,6 +125,9 @@
             position: relative;
             z-index: 2;
             max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            border-radius: 10px;
         }
 
         header h1 {
@@ -199,12 +207,6 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-        }
-
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
         .service-item h3 {
@@ -225,6 +227,36 @@
             font-weight: 700;
             font-size: 1.2rem;
             color: var(--color-accent);
+        }
+
+        /* Instagram Section */
+        #instagram {
+            background-color: var(--color-secondary);
+            text-align: center;
+        }
+
+        #instagram h2 {
+            font-family: var(--font-secondary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-text);
+        }
+
+        .instagram-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .instagram-gallery img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform var(--transition-speed);
+        }
+
+        .instagram-gallery img:hover {
+            transform: scale(1.05);
         }
 
         /* Additional Information */
@@ -306,6 +338,7 @@
         #contact {
             background-color: var(--color-light);
             text-align: center;
+            position: relative;
         }
 
         #contact h2 {
@@ -327,6 +360,9 @@
             font-size: 1.1rem;
             color: var(--color-text);
             transition: color var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         #contact .contact-info a:hover {
@@ -367,6 +403,47 @@
             background-color: #d9a1c6;
         }
 
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background-color: var(--color-accent);
+            color: var(--color-secondary);
+            border: none;
+            padding: 0.75rem;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: background-color var(--transition-speed);
+        }
+
+        #back-to-top:hover {
+            background-color: #d9a1c6;
+        }
+
+        /* Scroll Indicator */
+        #scroll-indicator {
+            position: fixed;
+            top: 0;
+            right: 20px;
+            width: var(--scroll-indicator-width);
+            height: 100vh;
+            background-color: var(--scroll-indicator-bg);
+            z-index: 999;
+        }
+
+        #scroll-indicator::after {
+            content: '';
+            width: var(--scroll-indicator-width);
+            height: 0;
+            background-color: var(--scroll-indicator-fill);
+            display: block;
+            transition: height var(--transition-speed);
+        }
+
         /* Footer */
         footer {
             background-color: var(--color-secondary);
@@ -400,6 +477,9 @@
 </head>
 <body>
 
+    <!-- Scroll Indicator -->
+    <div id="scroll-indicator"></div>
+
     <!-- Navbar -->
     <nav>
         <div class="container">
@@ -407,6 +487,7 @@
             <ul>
                 <li><a href="#about">Sobre Mim</a></li>
                 <li><a href="#services">Serviços</a></li>
+                <li><a href="#instagram">Instagram</a></li>
                 <li><a href="#additional">Observações</a></li>
                 <li><a href="#payment">Pagamentos</a></li>
                 <li><a href="#travel">Deslocamento</a></li>
@@ -458,6 +539,19 @@
             </div>
         </section>
 
+        <!-- Instagram Section -->
+        <section id="instagram">
+            <h2>Instagram</h2>
+            <div class="instagram-gallery">
+                <img src="https://via.placeholder.com/300x300" alt="Instagram 1">
+                <img src="https://via.placeholder.com/300x300" alt="Instagram 2">
+                <img src="https://via.placeholder.com/300x300" alt="Instagram 3">
+                <img src="https://via.placeholder.com/300x300" alt="Instagram 4">
+                <img src="https://via.placeholder.com/300x300" alt="Instagram 5">
+                <img src="https://via.placeholder.com/300x300" alt="Instagram 6">
+            </div>
+        </section>
+
         <!-- Additional Information Section -->
         <section id="additional">
             <h2>Observações</h2>
@@ -498,10 +592,84 @@
 
     </div>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Voltar ao Topo"><i class="fas fa-arrow-up"></i></button>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Karine Lopes Makeup Artist. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- JavaScript for Scroll Indicator and Back to Top Button -->
+    <script>
+        // Scroll Indicator
+        window.addEventListener('scroll', function() {
+            var scrollIndicator = document.getElementById('scroll-indicator').querySelector('::after');
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scroll-indicator').style.setProperty('--scroll-indicator-fill-height', scrollPercentage + '%');
+            document.getElementById('scroll-indicator').style.setProperty('--scroll-indicator-fill', 'linear-gradient(to top, var(--scroll-indicator-fill) ' + scrollPercentage + '%, transparent ' + scrollPercentage + '%)');
+            document.getElementById('scroll-indicator').style.setProperty('--scroll-indicator-fill', 'linear-gradient(to top, var(--scroll-indicator-fill) ' + scrollPercentage + '%, transparent ' + scrollPercentage + '%)');
+            // Adjust the ::after pseudo-element
+            document.getElementById('scroll-indicator').style.setProperty('--scroll-fill', scrollPercentage + '%');
+            document.getElementById('scroll-indicator').querySelector('::after').style.height = scrollPercentage + '%';
+        });
+
+        // Improved Scroll Indicator using CSS only
+        window.addEventListener('scroll', function() {
+            var scrollIndicator = document.getElementById('scroll-indicator').querySelector('::after');
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scroll-indicator').style.setProperty('--scroll-fill', scrollPercentage + '%');
+            document.getElementById('scroll-indicator').style.setProperty('--scroll-fill', scrollPercentage + '%');
+            // To manipulate ::after pseudo-element, we need to use a CSS variable
+            document.documentElement.style.setProperty('--scroll-fill', scrollPercentage + '%');
+        });
+
+        // Alternative Scroll Indicator Implementation
+        window.addEventListener('scroll', function() {
+            var scrollIndicator = document.getElementById('scroll-indicator');
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrollPercentage = (scrollTop / scrollHeight) * 100;
+            scrollIndicator.style.setProperty('--scroll-fill', scrollPercentage + '%');
+            scrollIndicator.style.setProperty('--scroll-indicator-fill-height', scrollPercentage + '%');
+            scrollIndicator.querySelector('::after').style.height = scrollPercentage + '%';
+        });
+
+        // Back to Top Button
+        var backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <!-- Additional CSS for Scroll Indicator -->
+    <style>
+        /* Update Scroll Indicator */
+        #scroll-indicator::after {
+            content: '';
+            width: var(--scroll-indicator-width);
+            height: var(--scroll-fill, 0%);
+            background-color: var(--scroll-indicator-fill);
+            display: block;
+            transition: height var(--transition-speed);
+        }
+    </style>
 
 </body>
 </html>
