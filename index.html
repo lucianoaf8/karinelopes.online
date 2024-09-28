@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karine Lopes - Makeup Artist & Hair Stylist</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+</head>
+<body class="min-h-screen bg-neutral-50 text-neutral-800 font-sans">
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Karine Lopes</h1>
+            <button id="menuToggle" class="md:hidden">
+                <i data-lucide="menu"></i>
+            </button>
+            <nav id="nav" class="hidden md:block">
+                <ul class="md:flex space-y-2 md:space-y-0 md:space-x-6">
+                    <li><a href="#home" class="hover:text-emerald-600">Home</a></li>
+                    <li><a href="#about" class="hover:text-emerald-600">About</a></li>
+                    <li><a href="#portfolio" class="hover:text-emerald-600">Portfolio</a></li>
+                    <li><a href="#services" class="hover:text-emerald-600">Services</a></li>
+                    <li><a href="#contact" class="hover:text-emerald-600">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="h-screen flex items-center justify-center bg-neutral-100">
+            <div class="text-center">
+                <h2 class="text-5xl font-bold mb-4">Karine Lopes</h2>
+                <p class="text-xl text-neutral-600">Makeup Artist & Hair Stylist</p>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <div class="bg-neutral-200 h-80 w-80 mx-auto rounded-full flex items-center justify-center text-neutral-400">
+                            Image Placeholder
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <p class="text-lg leading-relaxed">
+                            With 4 years of professional experience, I specialize in creating sophisticated and flawless looks. My mission is to enhance each client's natural beauty through personalized, at-home services. I work exclusively with high-quality, dermatologically and ophthalmologically tested products to ensure safety and comfort. Every makeup application is uniquely designed to highlight your individuality, always with dedication and care.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-20 bg-neutral-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">Portfolio</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-neutral-200 h-64 rounded-lg flex items-center justify-center text-neutral-400">Image 1</div>
+                    <div class="bg-neutral-200 h-64 rounded-lg flex items-center justify-center text-neutral-400">Image 2</div>
+                    <div class="bg-neutral-200 h-64 rounded-lg flex items-center justify-center text-neutral-400">Image 3</div>
+                    <div class="bg-neutral-200 h-64 rounded-lg flex items-center justify-center text-neutral-400">Image 4</div>
+                    <div class="bg-neutral-200 h-64 rounded-lg flex items-center justify-center text-neutral-400">Image 5</div>
+                    <div class="bg-neutral-200 h-64 rounded-lg flex items-center justify-center text-neutral-400">Image 6</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-emerald-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Makeup Social</h3>
+                        <p class="mb-4">Perfect for any social occasion</p>
+                        <p class="text-2xl font-bold text-emerald-600">$300</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Makeup with Babyliss</h3>
+                        <p class="mb-4">Makeup and hair curling</p>
+                        <p class="text-2xl font-bold text-emerald-600">$350</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Full Glam Package</h3>
+                        <p class="mb-4">Makeup, blow-dry, and Babyliss</p>
+                        <p class="text-2xl font-bold text-emerald-600">$400</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-neutral-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">Contact Me</h2>
+                <div class="flex flex-col items-center">
+                    <a href="tel:+5531984025115" class="flex items-center mb-4 text-lg hover:text-emerald-600">
+                        <i data-lucide="phone" class="mr-2"></i> (31) 98402-5115
+                    </a>
+                    <a href="mailto:contact@karinelopes.com" class="flex items-center mb-4 text-lg hover:text-emerald-600">
+                        <i data-lucide="mail" class="mr-2"></i> contact@karinelopes.com
+                    </a>
+                    <a href="https://www.instagram.com/klmakeup.artist" class="flex items-center text-lg hover:text-emerald-600">
+                        <i data-lucide="instagram" class="mr-2"></i> @klmakeup.artist
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-neutral-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Karine Lopes Makeup Artist. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
